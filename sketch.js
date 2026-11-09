@@ -60,7 +60,7 @@ class pirilampo {
     let brilho=150+105*sin(frameCount*0.05+this.fase);
     noStroke();
     fill(255,230,100,brilho/4);
-    circle(this.x;this.y,this.tamanho*4);
+    circle(this.x,this.y,this.tamanho*4);
     fill(255,230,100,brilho);
     circle(this.x,this.y,this.tamanho);
   }
@@ -88,7 +88,7 @@ class pirilampo {
   circle(mouseX,mouseY,300);
   text(20+20*sin(frameCount*0.01),10,50+30*sin(frameCount*0.0007),40);
 
-  funciton mousePressed() {
+  function mousePressed() {
     flores.push(new Flor(mouseX,mouseY));
   }
 
@@ -108,7 +108,7 @@ class pirilampo {
     return false;
   }
 
-  Class Pirilampo {
+  class Pirilampo {
     constructor() {
       this.x = random(width);
       this.y = random(height);
