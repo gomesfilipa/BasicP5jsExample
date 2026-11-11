@@ -295,7 +295,7 @@ function novaFlor(x,y){
   flores.sort((a,b)=> a.y - b.y);
 } 
 
-function KeyPressed (){
+function KeyPressed(){
   if(key=== '1') {modoArco=false; corAlvo = [255,230,100]; } 
   else if (key === '2') {modoArco=false; corAlvo = [100,230,255]; } 
   else if(key === '3') {modoArco=false; corAlvo = [255,130,200]; } 
@@ -329,7 +329,7 @@ class Pirilampo {
         this.x = random(cx - rx, cx + rx);
         this.y = random(cy - ry * 1.6, cy + ry * 0.8);
       } else {
-        this.x = random(wdth);
+        this.x = random(width);
         this.y = random(hz * 0.4, height * 0.95);
       }
     } else {
@@ -360,7 +360,7 @@ mover() {
   } else {
     let d = dist (this.x,this.y,mouseX,mouseY);
     if ( d < 180) {
-      this.x += (mouseX - this.x) * 0.01 * thiz.z;
+      this.x += (mouseX - this.x) * 0.01 * this.z;
       this.y += (mouseY - this.y) * 0.01 * this.z;
     }
     this.x += vx * this.z;
@@ -370,16 +370,16 @@ mover() {
   this.x += vento * 2 * this.z;
 
   if (this.x < -30) this.x = width + 30;
-  if (this.y > width + 30) this.x = -30;
+  if (this.x > width + 30) this.x = -30;
   this.y = constrain(this.y, hz * 0.3, height - 8);
 } 
 
  brilho() {
-  let b = 0.08 + 0.92 * PeriodicWave(max(0,sin(frameCount * this.ritmo + this.fase)), 6);
-  return b * (0.4 + 0.6 + this.z);
+  let b = 0.08 + 0.92 * pow(max(0,sin(frameCount * this.ritmo + this.fase)), 6);
+  return b * (0.4 + 0.6 * this.z);
 } 
 
-halo(x,t,b,squash,k) {
+halo(x,y,b,squash,k) {
   let ctx = drawingContext;
   let r = this.tamanho * 14;
   let c = Math.round(cor[0]) + ',' + Math.round(cor[1]) + ',' +Math.round(cor[2]);
@@ -425,12 +425,12 @@ class Nenufar {
     this.r = random(16,30);
     this.fase = random(100);
     this.rot = random(TWO_PI);
-    this.fLOR = random() < 0.55;
+    this.flor = random() < 0.55;
     this.cf = random([[255,170,210], [255,255,235],[220,180,255]]);
   } 
 
 desenhar(){
-  let esc = map(this.y, cy - ry, cy * ry, 0.55,1.15);
+  let esc = map(this.y, cy - ry, cy + ry, 0.55,1.15);
   let bx = this.x + sin(frameCount * 0.01 + this.fase) * 3 + ventoS * 4;
   let by = this.y + sin(frameCount * 0.025 + this.fase) * 1.5;
   let w = this.r * 2 * esc;
